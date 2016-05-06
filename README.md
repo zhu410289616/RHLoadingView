@@ -3,7 +3,7 @@
 
 ## Usage
 ```
-pod 'RHLoadingView', '~> 1.0.0'
+pod 'RHLoadingView'
 
 #import "UIView+RHLoading.h"
 

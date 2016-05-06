@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "RHLoadingView"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "RHLoadingView: Some IndicatorView."
   s.homepage     = "https://github.com/zhu410289616/RHLoadingView"
   s.license      = { :type => "Apache", :file => "LICENSE" }
