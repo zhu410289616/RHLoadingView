@@ -19,11 +19,13 @@
 
 @property (nonatomic, strong, readonly) JQIndicatorView *indicatorView;
 @property (nonatomic, strong, readonly) UILabel *textLabel;
-@property (nonatomic, weak) id<RHLoadingViewDelegate> delegate;
 
-- (instancetype)initWithIndicatorType:(JQIndicatorType)type;
-- (instancetype)initWithIndicatorType:(JQIndicatorType)type tintColor:(UIColor *)color;
-- (instancetype)initWithIndicatorType:(JQIndicatorType)type tintColor:(UIColor *)color size:(CGSize)size;
+@property (nonatomic, strong) UIColor *tintColor;
+@property (nonatomic, assign) JQIndicatorType indicatorType;
+@property (nonatomic, assign) CGSize indicatorSize;
+@property (nonatomic, strong) UIFont *textFont;
+
+@property (nonatomic, weak) id<RHLoadingViewDelegate> delegate;
 
 - (void)showWithMessage:(NSString *)message duration:(NSTimeInterval)duration;
 - (void)hide:(BOOL)animated;

@@ -11,51 +11,30 @@
 
 @implementation RHLoadingView
 
-- (instancetype)initWithIndicatorType:(JQIndicatorType)type
+- (void)setup
 {
-    return [self initWithIndicatorType:type tintColor:[UIColor whiteColor]];
+    self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.6];
+    self.layer.cornerRadius = 5;
+    self.layer.masksToBounds = YES;
+    
+    _tintColor = [UIColor whiteColor];
+    _indicatorType = JQIndicatorTypeCyclingCycle;
+    _indicatorSize = CGSizeMake(60, 60);
+    _textFont = [UIFont systemFontOfSize:14.0f];
 }
 
-- (instancetype)initWithIndicatorType:(JQIndicatorType)type tintColor:(UIColor *)color
-{
-    return [self initWithIndicatorType:type tintColor:color size:CGSizeMake(40, 40)];
-}
-
-- (instancetype)initWithIndicatorType:(JQIndicatorType)type tintColor:(UIColor *)color size:(CGSize)size
+- (instancetype)init
 {
     if (self = [super init]) {
-        self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.7];
-        self.layer.cornerRadius = 5;
-        self.layer.masksToBounds = YES;
-        
-        //
-        _indicatorView = [[JQIndicatorView alloc] initWithType:type tintColor:color size:size];
-        [self addSubview:_indicatorView];
-        
-        //
-        _textLabel = [[UILabel alloc] init];
-        _textLabel.textAlignment = NSTextAlignmentCenter;
-        _textLabel.textColor = color;
-        _textLabel.font = [UIFont systemFontOfSize:14.0f];
-        _textLabel.numberOfLines = 0;
-        [self addSubview:_textLabel];
-        
-        //
-        [_textLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self);
-            make.bottom.equalTo(self).offset(-10);
-            make.left.equalTo(self).offset(10);
-            make.right.equalTo(self).offset(-10);
-        }];
-        
-        //
-        [_indicatorView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(_textLabel);
-            make.top.equalTo(self).offset(10);
-            make.bottom.equalTo(_textLabel.mas_top).offset(-10);
-            make.size.mas_equalTo(size);
-        }];
-        
+        [self setup];
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        [self setup];
     }
     return self;
 }
@@ -69,9 +48,30 @@
 
 - (void)showWithMessage:(NSString *)message duration:(NSTimeInterval)duration
 {
+    //
+    _indicatorView = [[JQIndicatorView alloc] initWithType:_indicatorType tintColor:_tintColor size:_indicatorSize];
+    _indicatorView.center = CGPointMake(CGRectGetWidth(self.frame)/2, _indicatorSize.height/2 + 15);
+    [self addSubview:_indicatorView];
     [_indicatorView startAnimating];
+    
+    //
+    _textLabel = [[UILabel alloc] init];
+    _textLabel.textAlignment = NSTextAlignmentCenter;
+    _textLabel.textColor = _tintColor;
+    _textLabel.font = _textFont;
+    _textLabel.numberOfLines = 0;
     _textLabel.text = message;
-    [self layoutIfNeeded];
+    [self addSubview:_textLabel];
+    
+    //
+    [_textLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self);
+        make.top.equalTo(self).offset(_indicatorSize.height + 30);
+        make.bottom.equalTo(self).offset(-15);
+        make.left.equalTo(self).offset(15);
+        make.right.equalTo(self).offset(-15);
+    }];
+    
     [self hide:YES afterDelay:duration];
 }
 
