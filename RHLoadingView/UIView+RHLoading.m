@@ -10,8 +10,6 @@
 #import <objc/runtime.h>
 #import "Masonry.h"
 
-const CGFloat loadingWidth = 180.0f;
-
 static char rh_loadingViewKey;
 
 @implementation UIView (RHLoading)
@@ -69,12 +67,8 @@ static char rh_loadingViewKey;
         return;
     }
     
-    CGFloat width = CGRectGetWidth(self.frame);
-    CGFloat height = CGRectGetHeight(self.frame);
-    CGFloat loadingHeight = 110.0f;
-    
-    CGRect frame = CGRectMake((width - loadingWidth) / 2, (height - loadingHeight) / 2, loadingWidth, loadingHeight);
-    RHLoadingView *loadingView = [[RHLoadingView alloc] initWithFrame:frame];
+    RHLoadingView *loadingView = [[RHLoadingView alloc] initWithFrame:self.bounds];
+    loadingView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.1];
     [self rh_setLoadingView:loadingView];
     loadingView.delegate = self;
     
@@ -95,12 +89,7 @@ static char rh_loadingViewKey;
 - (void)rh_showLoadingWithMessage:(NSString *)message duration:(NSTimeInterval)duration type:(JQIndicatorType)type
 {
     [self rh_checkCreateLoadingView];
-    [[self rh_loadingView] mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self);
-        make.width.equalTo(@(loadingWidth));
-    }];
-    [self rh_loadingView].indicatorType = type;
-    [[self rh_loadingView] showWithMessage:message duration:duration];
+    [[self rh_loadingView] showWithMessage:message duration:duration type:type];
 }
 
 - (void)rh_hideLoading:(BOOL)animated

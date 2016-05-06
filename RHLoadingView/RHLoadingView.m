@@ -9,35 +9,10 @@
 #import "RHLoadingView.h"
 #import "Masonry.h"
 
+CGFloat const kLoadingWidth = 180.0f;
+CGFloat const kLoadingHeight = 110.0f;
+
 @implementation RHLoadingView
-
-- (void)setup
-{
-    self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.6];
-    self.layer.cornerRadius = 5;
-    self.layer.masksToBounds = YES;
-    
-    _tintColor = [UIColor whiteColor];
-    _indicatorType = JQIndicatorTypeCyclingCycle;
-    _indicatorSize = CGSizeMake(60, 60);
-    _textFont = [UIFont systemFontOfSize:14.0f];
-}
-
-- (instancetype)init
-{
-    if (self = [super init]) {
-        [self setup];
-    }
-    return self;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    if (self = [super initWithFrame:frame]) {
-        [self setup];
-    }
-    return self;
-}
 
 - (void)dealloc
 {
@@ -46,31 +21,21 @@
 #endif
 }
 
-- (void)showWithMessage:(NSString *)message duration:(NSTimeInterval)duration
+- (void)showWithMessage:(NSString *)message duration:(NSTimeInterval)duration type:(JQIndicatorType)type
 {
-    //
-    _indicatorView = [[JQIndicatorView alloc] initWithType:_indicatorType tintColor:_tintColor size:_indicatorSize];
-    _indicatorView.center = CGPointMake(CGRectGetWidth(self.frame)/2, _indicatorSize.height/2 + 15);
-    [self addSubview:_indicatorView];
-    [_indicatorView startAnimating];
+    CGFloat width = CGRectGetWidth(self.frame);
+    CGFloat height = CGRectGetHeight(self.frame);
     
-    //
-    _textLabel = [[UILabel alloc] init];
-    _textLabel.textAlignment = NSTextAlignmentCenter;
-    _textLabel.textColor = _tintColor;
-    _textLabel.font = _textFont;
-    _textLabel.numberOfLines = 0;
-    _textLabel.text = message;
-    [self addSubview:_textLabel];
+    CGRect frame = CGRectMake((width - kLoadingWidth) / 2, (height - kLoadingHeight) / 2, kLoadingWidth, kLoadingHeight);
+    _detailView = [[RHLoadingDetailView alloc] initWithFrame:frame];
+    [self addSubview:_detailView];
     
-    //
-    [_textLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self);
-        make.top.equalTo(self).offset(_indicatorSize.height + 30);
-        make.bottom.equalTo(self).offset(-15);
-        make.left.equalTo(self).offset(15);
-        make.right.equalTo(self).offset(-15);
+    [_detailView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self);
+        make.width.equalTo(@(kLoadingWidth));
     }];
+    _detailView.indicatorType = type;
+    [_detailView showWithMessage:message duration:duration];
     
     [self hide:YES afterDelay:duration];
 }
@@ -100,7 +65,7 @@
 
 - (void)dismiss
 {
-    [_indicatorView stopAnimating];
+    [_detailView.indicatorView stopAnimating];
     if (_delegate && [_delegate respondsToSelector:@selector(didLoadingViewHide)]) {
         [_delegate didLoadingViewHide];
     } else {

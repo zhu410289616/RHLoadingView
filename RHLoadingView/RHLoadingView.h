@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JQIndicatorView.h"
+#import "RHLoadingDetailView.h"
+
+extern CGFloat const kLoadingWidth;
+extern CGFloat const kLoadingHeight;
 
 @protocol RHLoadingViewDelegate <NSObject>
 
@@ -17,17 +20,10 @@
 
 @interface RHLoadingView : UIView
 
-@property (nonatomic, strong, readonly) JQIndicatorView *indicatorView;
-@property (nonatomic, strong, readonly) UILabel *textLabel;
-
-@property (nonatomic, strong) UIColor *tintColor;
-@property (nonatomic, assign) JQIndicatorType indicatorType;
-@property (nonatomic, assign) CGSize indicatorSize;
-@property (nonatomic, strong) UIFont *textFont;
-
+@property (nonatomic, strong, readonly) RHLoadingDetailView *detailView;
 @property (nonatomic, weak) id<RHLoadingViewDelegate> delegate;
 
-- (void)showWithMessage:(NSString *)message duration:(NSTimeInterval)duration;
+- (void)showWithMessage:(NSString *)message duration:(NSTimeInterval)duration type:(JQIndicatorType)type;
 - (void)hide:(BOOL)animated;
 
 @end
