@@ -9,8 +9,8 @@
 #import "RHLoadingView.h"
 #import "Masonry.h"
 
-CGFloat const kLoadingWidth = 180.0f;
-CGFloat const kLoadingHeight = 110.0f;
+CGFloat const RHLoadingWidth = 180.0f;
+CGFloat const RHLoadingHeight = 110.0f;
 
 @implementation RHLoadingView
 
@@ -21,21 +21,36 @@ CGFloat const kLoadingHeight = 110.0f;
 #endif
 }
 
-- (void)showWithMessage:(NSString *)message duration:(NSTimeInterval)duration type:(JQIndicatorType)type
+- (void)setup
 {
     CGFloat width = CGRectGetWidth(self.frame);
     CGFloat height = CGRectGetHeight(self.frame);
     
-    CGRect frame = CGRectMake((width - kLoadingWidth) / 2, (height - kLoadingHeight) / 2, kLoadingWidth, kLoadingHeight);
+    CGRect frame = CGRectMake((width - RHLoadingWidth) / 2, (height - RHLoadingHeight) / 2, RHLoadingWidth, RHLoadingHeight);
     _detailView = [[RHLoadingDetailView alloc] initWithFrame:frame];
     [self addSubview:_detailView];
     
     [_detailView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self);
-        make.width.equalTo(@(kLoadingWidth));
+        make.width.equalTo(@(RHLoadingWidth));
+        make.height.greaterThanOrEqualTo(@(RHLoadingHeight));
     }];
+}
+
+- (void)showWithType:(JQIndicatorType)type duration:(NSTimeInterval)duration
+{
+    [self setup];
     _detailView.indicatorType = type;
-    [_detailView showWithMessage:message duration:duration];
+    [_detailView show];
+    
+    [self hide:YES afterDelay:duration];
+}
+
+- (void)showWithType:(JQIndicatorType)type duration:(NSTimeInterval)duration message:(NSString *)message
+{
+    [self setup];
+    _detailView.indicatorType = type;
+    [_detailView showWithMessage:message];
     
     [self hide:YES afterDelay:duration];
 }

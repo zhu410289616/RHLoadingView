@@ -39,7 +39,15 @@
     return self;
 }
 
-- (void)showWithMessage:(NSString *)message duration:(NSTimeInterval)duration
+- (void)show
+{
+    _indicatorView = [[JQIndicatorView alloc] initWithType:_indicatorType tintColor:_tintColor size:_indicatorSize];
+    _indicatorView.center = CGPointMake(CGRectGetWidth(self.frame)/2, CGRectGetHeight(self.frame)/2);
+    [self addSubview:_indicatorView];
+    [_indicatorView startAnimating];
+}
+
+- (void)showWithMessage:(NSString *)message
 {
     //
     _indicatorView = [[JQIndicatorView alloc] initWithType:_indicatorType tintColor:_tintColor size:_indicatorSize];

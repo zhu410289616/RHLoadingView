@@ -11,23 +11,25 @@
 
 @interface UIView (RHLoading) <RHLoadingViewDelegate>
 
-- (void)rh_showLoadingWithWaiting;
+#pragma mark - waiting
 
-- (void)rh_showLoadingWithWaitingMusic2;
-- (void)rh_showLoadingWithWaitingBounceSpot1;
-- (void)rh_showLoadingWithWaitingBounceSpot2;
-- (void)rh_showLoadingWithWaitingCyclingLine;
-- (void)rh_showLoadingWithWaitingCyclingCycle;
+- (void)rh_showWaitingWithDefault;
 
-- (void)rh_showLoadingWithWaitingType:(JQIndicatorType)type;
+- (void)rh_showWaitingWithMusic2;
+- (void)rh_showWaitingWithBounceSpot2;
+
+- (void)rh_showWaitingWithBounceSpot1;
+- (void)rh_showWaitingWithCyclingLine;
+- (void)rh_showWaitingWithCyclingCycle;
+
+- (void)rh_showWaitingWithType:(JQIndicatorType)type;
 
 #pragma mark - common function
 
 - (RHLoadingView *)rh_loadingView;
 
-- (void)rh_showLoadingWithMessage:(NSString *)message;
-- (void)rh_showLoadingWithMessage:(NSString *)message duration:(NSTimeInterval)duration;
-- (void)rh_showLoadingWithMessage:(NSString *)message duration:(NSTimeInterval)duration type:(JQIndicatorType)type;
+- (void)rh_showLoadingWithType:(JQIndicatorType)type duration:(NSTimeInterval)duration;
+- (void)rh_showLoadingWithType:(JQIndicatorType)type duration:(NSTimeInterval)duration message:(NSString *)message;
 - (void)rh_hideLoading:(BOOL)animated;
 
 @end

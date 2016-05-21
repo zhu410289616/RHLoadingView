@@ -14,39 +14,41 @@ static char rh_loadingViewKey;
 
 @implementation UIView (RHLoading)
 
-- (void)rh_showLoadingWithWaiting
+#pragma mark - waiting
+
+- (void)rh_showWaitingWithDefault
 {
-    [self rh_showLoadingWithWaitingType:JQIndicatorTypeCyclingCycle];
+    [self rh_showWaitingWithType:JQIndicatorTypeCyclingCycle];
 }
 
-- (void)rh_showLoadingWithWaitingMusic2
+- (void)rh_showWaitingWithMusic2
 {
-    [self rh_showLoadingWithWaitingType:JQIndicatorTypeMusic2];
+    [self rh_showLoadingWithType:JQIndicatorTypeMusic2 duration:60.0f];
 }
 
-- (void)rh_showLoadingWithWaitingBounceSpot1
+- (void)rh_showWaitingWithBounceSpot2
 {
-    [self rh_showLoadingWithWaitingType:JQIndicatorTypeBounceSpot1];
+    [self rh_showLoadingWithType:JQIndicatorTypeBounceSpot2 duration:60.0f];
 }
 
-- (void)rh_showLoadingWithWaitingBounceSpot2
+- (void)rh_showWaitingWithBounceSpot1
 {
-    [self rh_showLoadingWithWaitingType:JQIndicatorTypeBounceSpot2];
+    [self rh_showWaitingWithType:JQIndicatorTypeBounceSpot1];
 }
 
-- (void)rh_showLoadingWithWaitingCyclingLine
+- (void)rh_showWaitingWithCyclingLine
 {
-    [self rh_showLoadingWithWaitingType:JQIndicatorTypeCyclingLine];
+    [self rh_showWaitingWithType:JQIndicatorTypeCyclingLine];
 }
 
-- (void)rh_showLoadingWithWaitingCyclingCycle
+- (void)rh_showWaitingWithCyclingCycle
 {
-    [self rh_showLoadingWithWaitingType:JQIndicatorTypeCyclingCycle];
+    [self rh_showWaitingWithType:JQIndicatorTypeCyclingCycle];
 }
 
-- (void)rh_showLoadingWithWaitingType:(JQIndicatorType)type
+- (void)rh_showWaitingWithType:(JQIndicatorType)type
 {
-    [self rh_showLoadingWithMessage:@"请稍后" duration:60.0f type:type];
+    [self rh_showLoadingWithType:type duration:60.0f message:@"请稍候"];
 }
 
 #pragma mark - common function
@@ -76,20 +78,16 @@ static char rh_loadingViewKey;
     [self bringSubviewToFront:loadingView];
 }
 
-- (void)rh_showLoadingWithMessage:(NSString *)message
-{
-    [self rh_showLoadingWithMessage:message duration:60.0f];
-}
-
-- (void)rh_showLoadingWithMessage:(NSString *)message duration:(NSTimeInterval)duration
-{
-    [self rh_showLoadingWithMessage:message duration:duration type:JQIndicatorTypeCyclingCycle];
-}
-
-- (void)rh_showLoadingWithMessage:(NSString *)message duration:(NSTimeInterval)duration type:(JQIndicatorType)type
+- (void)rh_showLoadingWithType:(JQIndicatorType)type duration:(NSTimeInterval)duration
 {
     [self rh_checkCreateLoadingView];
-    [[self rh_loadingView] showWithMessage:message duration:duration type:type];
+    [[self rh_loadingView] showWithType:type duration:duration];
+}
+
+- (void)rh_showLoadingWithType:(JQIndicatorType)type duration:(NSTimeInterval)duration message:(NSString *)message
+{
+    [self rh_checkCreateLoadingView];
+    [[self rh_loadingView] showWithType:type duration:duration message:message];
 }
 
 - (void)rh_hideLoading:(BOOL)animated

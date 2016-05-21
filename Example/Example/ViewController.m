@@ -51,7 +51,10 @@
     [indicator startAnimating];
     
     //waiting
-    [self.view rh_showLoadingWithWaiting];
+//    [self.view rh_showWaitingWithMusic2];
+//    [self.view rh_showWaitingWithCyclingCycle];
+//    [self.view rh_showLoadingWithType:JQIndicatorTypeCyclingLine duration:5 message:@"sdfsd304t是对方是开放的精神"];
+    [self.view rh_showWaitingWithBounceSpot2];
     
 }
 

@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "RHLoadingDetailView.h"
 
-extern CGFloat const kLoadingWidth;
-extern CGFloat const kLoadingHeight;
+extern CGFloat const RHLoadingWidth;
+extern CGFloat const RHLoadingHeight;
 
 @protocol RHLoadingViewDelegate <NSObject>
 
@@ -23,7 +23,8 @@ extern CGFloat const kLoadingHeight;
 @property (nonatomic, strong, readonly) RHLoadingDetailView *detailView;
 @property (nonatomic, weak) id<RHLoadingViewDelegate> delegate;
 
-- (void)showWithMessage:(NSString *)message duration:(NSTimeInterval)duration type:(JQIndicatorType)type;
+- (void)showWithType:(JQIndicatorType)type duration:(NSTimeInterval)duration;
+- (void)showWithType:(JQIndicatorType)type duration:(NSTimeInterval)duration message:(NSString *)message;
 - (void)hide:(BOOL)animated;
 
 @end
