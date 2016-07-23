@@ -21,26 +21,28 @@ CGFloat const RHLoadingHeight = 110.0f;
 #endif
 }
 
-- (void)setup
+- (RHLoadingDetailView *)createDetailViewWithIndicatorType:(JQIndicatorType)type
 {
     CGFloat width = CGRectGetWidth(self.frame);
     CGFloat height = CGRectGetHeight(self.frame);
     
     CGRect frame = CGRectMake((width - RHLoadingWidth) / 2, (height - RHLoadingHeight) / 2, RHLoadingWidth, RHLoadingHeight);
-    _detailView = [[RHLoadingDetailView alloc] initWithFrame:frame];
-    [self addSubview:_detailView];
+    RHLoadingDetailView *loadingView = [[RHLoadingDetailView alloc] initWithFrame:frame];
+    loadingView.indicatorType = type;
+    [self addSubview:loadingView];
     
-    [_detailView mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [loadingView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self);
         make.width.equalTo(@(RHLoadingWidth));
         make.height.greaterThanOrEqualTo(@(RHLoadingHeight));
     }];
+    
+    return loadingView;
 }
 
 - (void)showWithType:(JQIndicatorType)type duration:(NSTimeInterval)duration
 {
-    [self setup];
-    _detailView.indicatorType = type;
+    _detailView = [self createDetailViewWithIndicatorType:type];
     [_detailView show];
     
     [self hide:YES afterDelay:duration];
@@ -48,8 +50,7 @@ CGFloat const RHLoadingHeight = 110.0f;
 
 - (void)showWithType:(JQIndicatorType)type duration:(NSTimeInterval)duration message:(NSString *)message
 {
-    [self setup];
-    _detailView.indicatorType = type;
+    _detailView = [self createDetailViewWithIndicatorType:type];
     [_detailView showWithMessage:message];
     
     [self hide:YES afterDelay:duration];
@@ -80,7 +81,7 @@ CGFloat const RHLoadingHeight = 110.0f;
 
 - (void)dismiss
 {
-    [_detailView.indicatorView stopAnimating];
+    [_detailView hide];
     if (_delegate && [_delegate respondsToSelector:@selector(didLoadingViewHide)]) {
         [_delegate didLoadingViewHide];
     } else {

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RHLoadingDetailView.h"
+#import "RHRandomColorProgressView.h"
 
 extern CGFloat const RHLoadingWidth;
 extern CGFloat const RHLoadingHeight;
@@ -20,7 +21,7 @@ extern CGFloat const RHLoadingHeight;
 
 @interface RHLoadingView : UIView
 
-@property (nonatomic, strong, readonly) RHLoadingDetailView *detailView;
+@property (nonatomic, strong, readonly) RHBaseLoadingDetailView *detailView;
 @property (nonatomic, weak) id<RHLoadingViewDelegate> delegate;
 
 - (void)showWithType:(JQIndicatorType)type duration:(NSTimeInterval)duration;

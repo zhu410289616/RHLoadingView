@@ -10,6 +10,8 @@
 #import "Masonry.h"
 #import "UIView+RHLoading.h"
 
+#import "RHRandomColorProgressView.h"
+
 @interface ViewController ()
 
 @end
@@ -49,6 +51,20 @@
     indicator.center = CGPointMake(240, 200);
     [self.view addSubview:indicator];
     [indicator startAnimating];
+    
+    //
+    NSArray *colors = @[
+                        [UIColor purpleColor],
+                        [UIColor orangeColor],
+                        [UIColor cyanColor],
+                        [UIColor redColor],
+                        [UIColor greenColor],
+                        [UIColor blueColor],
+                        [UIColor yellowColor]
+                        ];
+    RHRandomColorProgressView *progressView = [[RHRandomColorProgressView alloc] initWithFrame:CGRectMake(0, 0, 80, 80) andLineWidth:3.0 andLineColor:colors];
+    progressView.center = self.view.center;
+    [self.view addSubview:progressView];
     
     //waiting
 //    [self.view rh_showWaitingWithMusic2];

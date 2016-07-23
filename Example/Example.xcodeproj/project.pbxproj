@@ -23,6 +23,8 @@
 		8335D6A01CDB9A0300CD3AC5 /* RHLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8335D69F1CDB9A0300CD3AC5 /* RHLoadingView.m */; };
 		8335D6A31CDB9A1F00CD3AC5 /* UIView+RHLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 8335D6A21CDB9A1F00CD3AC5 /* UIView+RHLoading.m */; };
 		83D383B41CDC9A9F00AEEF12 /* RHLoadingDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D383B31CDC9A9F00AEEF12 /* RHLoadingDetailView.m */; };
+		83D8F6D01D43409300E8143A /* RHBaseLoadingDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D8F6CF1D43409300E8143A /* RHBaseLoadingDetailView.m */; };
+		83D8F6D31D43469200E8143A /* RHRandomColorProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D8F6D21D43469200E8143A /* RHRandomColorProgressView.m */; };
 		BDCADD374B89B94A650D5DA9 /* libPods-Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ACEE8ADB68A5EB16C0793CB /* libPods-Example.a */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +61,10 @@
 		8335D6A21CDB9A1F00CD3AC5 /* UIView+RHLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+RHLoading.m"; sourceTree = "<group>"; };
 		83D383B21CDC9A9F00AEEF12 /* RHLoadingDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RHLoadingDetailView.h; sourceTree = "<group>"; };
 		83D383B31CDC9A9F00AEEF12 /* RHLoadingDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RHLoadingDetailView.m; sourceTree = "<group>"; };
+		83D8F6CE1D43409300E8143A /* RHBaseLoadingDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RHBaseLoadingDetailView.h; sourceTree = "<group>"; };
+		83D8F6CF1D43409300E8143A /* RHBaseLoadingDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RHBaseLoadingDetailView.m; sourceTree = "<group>"; };
+		83D8F6D11D43469200E8143A /* RHRandomColorProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RHRandomColorProgressView.h; sourceTree = "<group>"; };
+		83D8F6D21D43469200E8143A /* RHRandomColorProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RHRandomColorProgressView.m; sourceTree = "<group>"; };
 		AC79DAE60CC43C39F47FEBCB /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		D680C357F31F42F505D84C0C /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,6 +165,10 @@
 				8335D6A21CDB9A1F00CD3AC5 /* UIView+RHLoading.m */,
 				83D383B21CDC9A9F00AEEF12 /* RHLoadingDetailView.h */,
 				83D383B31CDC9A9F00AEEF12 /* RHLoadingDetailView.m */,
+				83D8F6CE1D43409300E8143A /* RHBaseLoadingDetailView.h */,
+				83D8F6CF1D43409300E8143A /* RHBaseLoadingDetailView.m */,
+				83D8F6D11D43469200E8143A /* RHRandomColorProgressView.h */,
+				83D8F6D21D43469200E8143A /* RHRandomColorProgressView.m */,
 			);
 			name = RHLoadingView;
 			path = ../RHLoadingView;
@@ -300,10 +310,12 @@
 				8335D69C1CDB99F000CD3AC5 /* JQMusic1Animation.m in Sources */,
 				8335D6971CDB99F000CD3AC5 /* JQBounceSpot1Animation.m in Sources */,
 				8335D6991CDB99F000CD3AC5 /* JQCyclingCycleAnimation.m in Sources */,
+				83D8F6D31D43469200E8143A /* RHRandomColorProgressView.m in Sources */,
 				8335D6A31CDB9A1F00CD3AC5 /* UIView+RHLoading.m in Sources */,
 				8335D6A01CDB9A0300CD3AC5 /* RHLoadingView.m in Sources */,
 				8335D6981CDB99F000CD3AC5 /* JQBounceSpot2Animation.m in Sources */,
 				8335D6741CDB999200CD3AC5 /* AppDelegate.m in Sources */,
+				83D8F6D01D43409300E8143A /* RHBaseLoadingDetailView.m in Sources */,
 				8335D6711CDB999200CD3AC5 /* main.m in Sources */,
 				83D383B41CDC9A9F00AEEF12 /* RHLoadingDetailView.m in Sources */,
 				8335D69D1CDB99F000CD3AC5 /* JQMusic2Animation.m in Sources */,

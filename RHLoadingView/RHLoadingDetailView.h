@@ -6,10 +6,10 @@
 //  Copyright © 2016年 zhuruhong. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "RHBaseLoadingDetailView.h"
 #import "JQIndicatorView.h"
 
-@interface RHLoadingDetailView : UIView
+@interface RHLoadingDetailView : RHBaseLoadingDetailView
 
 /** indicator */
 @property (nonatomic, strong, readonly) JQIndicatorView *indicatorView;
@@ -18,12 +18,8 @@
 @property (nonatomic, assign) JQIndicatorType indicatorType;
 @property (nonatomic, assign) CGSize indicatorSize;
 
-- (void)show;
-
 /** message */
 @property (nonatomic, strong, readonly) UILabel *textLabel;
 @property (nonatomic, strong) UIFont *textFont;
-
-- (void)showWithMessage:(NSString *)message;
 
 @end
